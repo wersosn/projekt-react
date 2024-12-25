@@ -34,7 +34,7 @@ const App = () => {
           <Route path="/akcja/szczegóły/:id" element={<StronaAkcji />} />
           <Route path="/akcje/dodaj" element={<DodajAkcje />} />
           <Route path="/akcje/edytuj/:id" element={<EdytujAkcje />} />
-          <Route path="*" element={<Logowanie />} />
+         
         </Routes>
       </Router>
     </>

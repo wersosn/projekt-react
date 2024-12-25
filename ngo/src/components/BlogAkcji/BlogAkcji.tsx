@@ -93,7 +93,7 @@ const BlogAkcji: React.FC = () => {
                 <div className="card-footer mt-3">
                   <p className="card-description">{event.description}</p>
                   <p><strong>Miejsca:</strong> {event.seats}</p>
-                  <Link className="btn btn-primary w-100" to={`/akcje/szczegóły/${event.id}`}>Przejdź do akcji</Link>
+                  <Link className="btn btn-primary w-100" to={`/akcja/szczegóły/${event.id}`}>Przejdź do akcji</Link>
                 </div>
               </div>
             </div>

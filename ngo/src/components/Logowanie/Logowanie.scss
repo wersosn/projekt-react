@@ -1,0 +1,69 @@
+$color_1: #388dd8;
+$color_2: #666;
+$color_3: #fff;
+$font-family_1: Arial, sans-serif;
+
+$background-color_2: #0056b3;
+
+#OknoLog {
+    margin-top: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    
+}
+.login-container {
+	
+	padding: 20px;
+	border: 4px solid $color_1;
+	border-radius: 15px;
+	text-align: center;
+	
+	h2 {
+		color: $color_1;
+		margin-bottom: 20px;
+	}
+	label {
+		
+		font-size: 14px;
+		color: $color_2;
+		margin: 10px 0 5px;
+	}
+	input {
+		
+	
+		padding: 10px;
+		border: 2px solid #333;
+		border-radius: 20px;
+		margin-bottom: 10px;
+		outline: none;
+		font-size: 14px;
+	}
+	button {
+	
+		padding: 10px;
+		background-color: $color_1;
+		color: $color_3;
+		border: none;
+		border-radius: 20px;
+		font-size: 16px;
+		cursor: pointer;
+		margin-top: 10px;
+		transition: background-color 0.3s;
+		&:hover {
+			background-color: $background-color_2;
+		}
+	}
+}
+.register-link {
+	font-size: 12px;
+	color: $color_2;
+	margin-top: 10px;
+	a {
+		color: $color_1;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

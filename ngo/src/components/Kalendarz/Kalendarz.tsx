@@ -1,11 +1,19 @@
 import React from 'react';
 import './Kalendarz.scss';
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
 
 const Kalendarz: React.FC = () => {
+  const calendarOptions = {
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridMonth'
+  };
+
   return (
     <div>
-      <h1>Kalendarz</h1>
-      <p>Tu będzie wyświetlany kalendarz z wydarzeniami lub akcjami.</p>
+      <FullCalendar
+        {...calendarOptions}
+      />
     </div>
   );
 };
