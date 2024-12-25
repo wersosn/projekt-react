@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import BlogAkcji from './components/BlogAkcji/BlogAkcji';
+import Kalendarz from './components/Kalendarz/Kalendarz';
+import Rejestracja from './components/Rejestracja/Rejestracja';
+import Logowanie from './components/Logowanie/Logowanie';
+import Konto from './components/Konto/Konto';
+import Akcje from './components/Akcje/Akcje';
+import StronaAkcji from './components/StronaAkcji/StronaAkcji';
+import DodajAkcje from './components/DodajAkcje/DodajAkcje';
+import EdytujAkcje from './components/EdytujAkcje/EdytujAkcje';
+import Navbar from './components/Navbar';
+import './App.scss';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [userId, setUserId] = useState<string | null>(null);
+
+  const logout = () => {
+    setUserId(null);
+   
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <Navbar userId={userId} logout={logout} />
+        <Routes>
+          <Route path="/" element={<BlogAkcji />} />
+          <Route path="/kalendarz" element={<Kalendarz />} />
+          <Route path="/rejestracja" element={<Rejestracja />} />
+          <Route path="/logowanie" element={<Logowanie />} />
+          <Route path="/konto" element={<Konto />} />
+          <Route path="/akcje" element={<Akcje />} />
+          <Route path="/akcja/szczegóły/:id" element={<StronaAkcji />} />
+          <Route path="/akcje/dodaj" element={<DodajAkcje />} />
+          <Route path="/akcje/edytuj/:id" element={<EdytujAkcje />} />
+          <Route path="*" element={<Logowanie />} />
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
