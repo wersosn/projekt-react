@@ -1,16 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { EventService, Event } from '../../event.service';
-
-
+import './StronaAkcji.scss';
 const StronaAkcji: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [userRole, setUserRole] = useState<string | null>(null);
-    const [eventDetails, setEventDetails] = useState<Event | null>(null);
+    const [userRole, setUserRole] = useState<string>();
+    const [eventDetails, setEventDetails] = useState<Event | undefined>({
+        id: 0,
+        title: '',
+        date: '',
+        location: '',
+        seats: 0,
+        time: '',
+        description: ''
+    });
 
+    useEffect(() => {
+        const fetchEventDetails = async () => {
+            try {
+                const eventService = new EventService();
+                const event = await eventService.getEventById(Number(id)).toPromise();
+                setEventDetails(event);
 
+            } catch (err) {
+                console.log('Failed to fetch event details');
+            }
+        };
+
+        fetchEventDetails();
+    }, [id]);
 
     return (
         <div className="container mt-4">
@@ -29,7 +49,7 @@ const StronaAkcji: React.FC = () => {
                     </div>
                 </div>
                 <div className="col-lg-6 col-md-12 order-md-2">
-                    {/* <div className="karta">
+                    <div className="karta">
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             {eventDetails && (
                                 <>
@@ -37,15 +57,15 @@ const StronaAkcji: React.FC = () => {
                                     <p className="card-subtitle mb-2 text-muted">{eventDetails.date},<br />{eventDetails.location}</p>
                                 </>
                             )}
-                            {(!eventDetails?.seats || !isLoggedIn) ? (
-                                <button className="btn btn-primary btn-sm udz" onClick={joinEvent} disabled>
+                            {/*  {(!eventDetails?.seats || !isLoggedIn) ? (
+                               <button className="btn btn-primary btn-sm udz" onClick={joinEvent} disabled>
                                     Weź Udział!
                                 </button>
                             ) : (
                                 <button className="btn btn-primary btn-sm udz" onClick={joinEvent}>
                                     Weź Udział!
                                 </button>
-                            )}
+                            )}*/}
                         </div>
                         <hr />
                         <h3>Dostępne godziny</h3>
@@ -64,6 +84,7 @@ const StronaAkcji: React.FC = () => {
                                     <small className="text-white">Liczba miejsc: {eventDetails.seats}</small>
                                 </div>
                             )}
+                            {/*TODO nie mam pojęcia jak to naprawić chociaż poprawnie pobiera dane */}
                         </div>
                         <div className="karta mt-2">
                             <h3>Opis</h3>
@@ -76,13 +97,13 @@ const StronaAkcji: React.FC = () => {
                                         Edytuj wydarzenie
                                     </button>
                                     <br />
-                                    <button className="btn btn-primary w-100 btn-danger" onClick={() => deleteEvent(eventDetails?.id)}>
+                                    {/* <button className="btn btn-primary w-100 btn-danger" onClick={() => deleteEvent(eventDetails?.id)}>
                                         Usuń wydarzenie
-                                    </button>
+                                    </button>*/}
                                 </>
                             )}
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>
