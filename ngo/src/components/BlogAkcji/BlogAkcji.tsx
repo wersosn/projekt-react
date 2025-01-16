@@ -65,36 +65,41 @@ const BlogAkcji: React.FC = () => {
   return (
     <div>
       <div className="mb-3 d-flex justify-content-between">
-        <h1 style={{ color: '#388dd8', fontSize: '3.6em' }} className="mt-3">Blog akcji</h1>
-        <div className="mb-3 text-center">
+        <h1 style={{ color: '#388dd8', fontSize: '3.6em' }} className="mt-5">Blog akcji</h1>
+        <div className="mb-3 text-center d-flex flex-column align-items-center">
           <h5>Sortowanie</h5>
-          <button className={`btn me-2 ${activeSortByDate ? 'btn-primary' : 'btn-outline-primary'}`} onClick={sortByDate}>
-            Sortuj wg daty ({sortDirectionDate === 'asc' ? 'Bliższe' : 'Dalsze'})
-          </button>
-          <button className={`btn me-2 ${activeSortBySeats ? 'btn-primary' : 'btn-outline-primary'}`} onClick={sortBySeats}>
-            Sortuj wg liczby miejsc ({sortDirectionSeats === 'asc' ? 'Więcej miejsc' : 'Mniej miejsc'})
-          </button>
+          <div className="d-flex">
+            <button className={`btn me-2 ${activeSortByDate ? 'btn-primary' : 'btn-outline-primary'}`} onClick={sortByDate}>
+              Sortuj wg daty ({sortDirectionDate === 'asc' ? 'Bliższe' : 'Dalsze'})
+            </button>
+            <button className={`btn me-2 ${activeSortBySeats ? 'btn-primary' : 'btn-outline-primary'}`} onClick={sortBySeats}>
+              Sortuj wg liczby miejsc ({sortDirectionSeats === 'asc' ? 'Więcej miejsc' : 'Mniej miejsc'})
+            </button>
+          </div>
           <h5>Filtrowanie</h5>
-          <button className="btn btn-outline-primary me-2" onClick={resetOrder}>Przywróć oryginalne ułożenie</button>
-          <button className="btn btn-outline-primary" onClick={toggleFilterSeats}>
-            {isFiltered ? 'Pokaż wszystkie wydarzenia' : 'Ukryj wydarzenia bez miejsc'}
-          </button>
+          <div className="d-flex">
+            <button className="btn btn-outline-primary me-2" onClick={resetOrder}>Przywróć oryginalne ułożenie</button>
+            <button className="btn btn-outline-primary" onClick={toggleFilterSeats}>
+              {isFiltered ? 'Pokaż wszystkie wydarzenia' : 'Ukryj wydarzenia bez miejsc'}
+            </button>
+          </div>
         </div>
       </div>
       <hr />
       <div className="row">
         {events.map(event => (
-          <div className="col-md-4 mb-4" key={event.id}>
-            <div className="card h-100">
+          <div className="col-4 mb-4 " key={event.id}>
+            <div className="car h-100">
               <img src="https://sklep.lambda.pl/userdata/public/gfx/b5ba5b93de162471a3a920ca9f91bb5d.jpg" alt="Akcja obraz" className="card-image img-fluid" />
               <div className="card-body">
-                <h2 className="card-title">{event.title}</h2>
+                <span className="card-title">{event.title}</span>
                 <p className="card-text">{event.date} - {event.location}</p>
                 <div className="card-footer mt-3">
                   <p className="card-description">{event.description}</p>
                   <p><strong>Miejsca:</strong> {event.seats}</p>
-                  <Link className="btn btn-primary w-100" to={`/akcja/szczegóły/${event.id}`}>Przejdź do akcji</Link>
+                  
                 </div>
+                <Link className="btn btn-primary w-100 mt-3" to={`/akcja/szczegóły/${event.id}`}>Przejdź do akcji</Link>
               </div>
             </div>
           </div>

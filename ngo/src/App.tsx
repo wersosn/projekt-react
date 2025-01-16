@@ -14,12 +14,13 @@ import EdytujAkcje from './components/EdytujAkcje/EdytujAkcje';
 import Navbar from './components/Navbar';
 import './App.scss';
 
+
 const App = () => {
   const [userId, setUserId] = useState<string | null>(null);
 
   const logout = () => {
     setUserId(null);
-   
+
   };
 
   return (
@@ -34,11 +35,11 @@ const App = () => {
           <Route path="/konto" element={<Konto />} />
           <Route path="/akcje" element={<Akcje />} />
           <Route path="/akcja" element={<Akcja />} />
-          <Route path="/akcja-administrator" element={<AkcjaAdministrator/>}/>
+          <Route path="/akcja-administrator" element={<AkcjaAdministrator />} />
           <Route path="/akcja/szczegóły/:id" element={<StronaAkcji />} />
           <Route path="/akcje/dodaj" element={<DodajAkcje />} />
           <Route path="/akcje/edytuj/:id" element={<EdytujAkcje />} />
-         
+
         </Routes>
       </Router>
     </>

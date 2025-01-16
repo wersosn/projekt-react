@@ -63,7 +63,7 @@ const Logowanie = () => {
           </div>
           <button type="submit" className="btn btn-primary w-75 mt-3" >Zaloguj się</button>
         </form>
-        <p className="text-center mt-3">
+        <p className="text-center mt-3" style={{ fontSize: '0.9rem' }}>
           Nie jesteś zweryfikowany? <a href="/rejestracja">Zarejestruj się</a>
         </p>
       </div>

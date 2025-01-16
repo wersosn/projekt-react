@@ -4,22 +4,24 @@ import { NavLink } from 'react-router-dom';
 
 const Konto: React.FC = () => {
   return (
-    <div className="container mt-2">
-      {/* Górna nawigacja */}
-      <div className="d-flex justify-content-center mb-2">
-        <div className="gn">
-          <NavLink to="/akcje" className="btn btn-primary">
-            Akcje
-          </NavLink>
-          <NavLink to="/konto" className="btn btn-primary kon">
-            Konto
-          </NavLink>
+    <>
+      <div className="container mt-2" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        {/* Górna nawigacja */}
+        <div className="d-flex justify-content-center mb-2">
+          <div className="gn">
+            <NavLink to="/akcje" className="btn btn-primary">
+              Akcje
+            </NavLink>
+            <NavLink to="/konto" className="btn btn-primary kon">
+              Konto
+            </NavLink>
+          </div>
         </div>
       </div>
       <h1 className="text-center mb-4">Twoje konto</h1>
 
       {/* Główna sekcja */}
-      <div className="karta">
+      <div className="karta main-section">
         <div className="card-body">
           {/* Dane osobowe */}
           <h3 className="mb-3">Dane osobowe:</h3>
@@ -74,14 +76,14 @@ const Konto: React.FC = () => {
             </div>
           </div>
         </div>
-          <>
-            <hr />
-            <NavLink to="/akcje/dodaj" className="btn btn-primary w-100">
-              Dodaj akcje
-            </NavLink>
-          </>
+        <>
+          <hr />
+          <NavLink to="/akcje/dodaj" className="btn btn-primary w-100">
+            Dodaj akcje
+          </NavLink>
+        </>
       </div>
-    </div>
+    </>
   );
 };
 

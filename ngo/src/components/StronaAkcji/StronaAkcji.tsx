@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { EventService, Event } from '../../event.service';
-import './StronaAkcji.scss';
+
 const StronaAkcji: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ const StronaAkcji: React.FC = () => {
     return (
         <div className="container mt-4">
             <div className="row">
-                <div className="col-lg-6 col-md-12 order-md-1">
+                <div className="col-lg-6 col-md-6 order-md-1">
                     <div className="row">
                         <div className="col-12 mb-2" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <img src="https://sklep.lambda.pl/userdata/public/gfx/5826/folia-banerowa-na-plandeki-Oracal-seria-451-049-ciemnoniebieska-king-blue.jpg" alt="Obraz" className="img-fluid rounded" />
@@ -48,7 +48,7 @@ const StronaAkcji: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-6 col-md-12 order-md-2">
+                <div className="col-lg-6 col-md-6 order-md-2">
                     <div className="karta">
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             {eventDetails && (
@@ -73,19 +73,20 @@ const StronaAkcji: React.FC = () => {
                         <div className="d-flex flex-wrap gap-2 mb-3 justify-content-center">
                             {eventDetails?.seats === 0 ? (
                                 <button className="btn btn-secondary" style={{ width: '100%' }} disabled>
-                                    {eventDetails.time}
+                                    {eventDetails?.time}
                                     <br />
-                                    <small className="text-white">Liczba miejsc: {eventDetails.seats}</small>
+                                    <small className="text-white">Liczba miejsc: {eventDetails?.seats}</small>
                                 </button>
                             ) : (
                                 <div className="btn btn-primary" style={{ width: '100%' }}>
-                                    {eventDetails.time}
+                                    {eventDetails?.time}
                                     <br />
-                                    <small className="text-white">Liczba miejsc: {eventDetails.seats}</small>
+                                    <small className="text-white">Liczba miejsc: {eventDetails?.seats}</small>
                                 </div>
                             )}
-                            {/*TODO nie mam pojęcia jak to naprawić chociaż poprawnie pobiera dane */}
+
                         </div>
+
                         <div className="karta mt-2">
                             <h3>Opis</h3>
                             <p className="text-muted">
