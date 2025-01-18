@@ -29,6 +29,7 @@ const EdytujAkcje: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string>('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Funkcja do pobierania szczegółów wydarzenia
   useEffect(() => {
@@ -55,10 +56,38 @@ const EdytujAkcje: React.FC = () => {
     }));
   };
 
+  // Funkcja do walidacji formularza
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!event.title.trim()) {
+      newErrors.title = 'Tytuł jest wymagany.';
+    }
+    if (!event.description.trim()) {
+      newErrors.description = 'Opis jest wymagany.';
+    }
+    if (!event.date) {
+      newErrors.date = 'Data jest wymagana.';
+    }
+    if (!event.time) {
+      newErrors.time = 'Godzina jest wymagana.';
+    }
+    if (!event.location.trim()) {
+      newErrors.location = 'Lokacja jest wymagana.';
+    }
+    if (event.seats < 1) {
+      newErrors.seats = 'Liczba miejsc musi być większa od 0.';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   // Funkcja do zapisania zmodyfikowanego wydarzenia
   const saveEvent = (e: React.FormEvent) => {
     e.preventDefault();
-    if (event.title && event.description && event.date && event.time && event.location && event.seats >= 0) {
+
+    if (validateForm()) {
       axios
         .put(`http://localhost:3000/api/events/${event.id}`, event)
         .then(() => {
@@ -67,8 +96,6 @@ const EdytujAkcje: React.FC = () => {
         .catch(() => {
           setError('Błąd przy aktualizacji danych');
         });
-    } else {
-      setError('Wszystkie pola są wymagane');
     }
   };
 
@@ -84,7 +111,6 @@ const EdytujAkcje: React.FC = () => {
     <div className="card">
       <h2>Edycja wydarzenia</h2>
       <form onSubmit={saveEvent}>
-        
         {/* Tytuł */}
         <div className="form-group">
           <label htmlFor="title">Tytuł:</label>
@@ -94,8 +120,8 @@ const EdytujAkcje: React.FC = () => {
             name="title"
             value={event.title}
             onChange={handleChange}
-            required
           />
+          {errors.title && <small className="text-danger">{errors.title}</small>}
         </div>
 
         {/* Opis */}
@@ -107,8 +133,8 @@ const EdytujAkcje: React.FC = () => {
             name="description"
             value={event.description}
             onChange={handleChange}
-            required
           />
+          {errors.description && <small className="text-danger">{errors.description}</small>}
         </div>
 
         {/* Data */}
@@ -120,8 +146,8 @@ const EdytujAkcje: React.FC = () => {
             name="date"
             value={event.date}
             onChange={handleChange}
-            required
           />
+          {errors.date && <small className="text-danger">{errors.date}</small>}
         </div>
 
         {/* Godzina */}
@@ -133,8 +159,8 @@ const EdytujAkcje: React.FC = () => {
             name="time"
             value={event.time}
             onChange={handleChange}
-            required
           />
+          {errors.time && <small className="text-danger">{errors.time}</small>}
         </div>
 
         {/* Lokacja */}
@@ -146,8 +172,8 @@ const EdytujAkcje: React.FC = () => {
             name="location"
             value={event.location}
             onChange={handleChange}
-            required
           />
+          {errors.location && <small className="text-danger">{errors.location}</small>}
         </div>
 
         {/* Liczba miejsc */}
@@ -157,11 +183,11 @@ const EdytujAkcje: React.FC = () => {
             type="number"
             id="seats"
             name="seats"
+            min="1"
             value={event.seats}
             onChange={handleChange}
-            min="1"
-            required
           />
+          {errors.seats && <small className="text-danger">{errors.seats}</small>}
         </div>
 
         {/* Przycisk */}
