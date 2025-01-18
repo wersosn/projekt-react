@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { EventService } from '../../event.service'; 
 import './DodajAkcje.scss';
 
 
 const DodajAkcje: React.FC = () => {
   const eventService = new EventService();
+  const navigate = useNavigate();
 
   const [newEvent, setNewEvent] = useState({
     id: Date.now(),
@@ -69,6 +71,7 @@ const DodajAkcje: React.FC = () => {
             seats: 1,
           });
           setErrors({});
+          navigate("/");
         },
         error: () => {
           alert('Błąd podczas tworzenia akcji.');
