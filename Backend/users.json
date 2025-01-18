@@ -201,5 +201,18 @@
     "address": "Warszawa",
     "gender": "F",
     "events": []
+  },
+  {
+    "id": 15,
+    "role": "user",
+    "login": "ania",
+    "password": "haslo123",
+    "name": "Ania",
+    "surname": "Nowak",
+    "email": "aninowak@gmail.com",
+    "phone": "999999999",
+    "address": "Białystok",
+    "gender": "F",
+    "events": []
   }
 ]

@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
+import axios from 'axios';
 import './Konto.scss';
-import { NavLink } from 'react-router-dom';
 
 const Konto: React.FC = () => {
+  const [userData, setUserData] = useState<any>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      axios
+        .get(`http://localhost:3000/users/${userId}`)
+        .then((response) => {
+          setUserData(response.data);
+        })
+        .catch((error) => {
+          console.error('Błąd podczas pobierania danych użytkownika:', error);
+        });
+    } else {
+      console.error('Brak ID użytkownika w localStorage');
+      navigate('/logowanie');
+    }
+  }, [navigate]);
+
+  if (!userData) {
+    return <div>Ładowanie danych użytkownika...</div>;
+  }
+
   return (
     <>
       <div className="container mt-2" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -29,49 +54,49 @@ const Konto: React.FC = () => {
             <div className="col-md-5">
               <label className="form-label text-center w-100">Login</label>
               <div className="data-box">
-                <span>Login</span>
+                <span>{userData.login}</span>
               </div>
             </div>
             <div className="col-md-5">
               <label className="form-label text-center w-100">Hasło</label>
               <div className="data-box">
-                <span>Password</span>
+                <span>{userData.password}</span>
               </div>
             </div>
             <div className="col-md-2">
               <label className="form-label text-center w-100">Płeć</label>
               <div className="data-box">
-                <span>Gender</span>
+                <span>{userData.gender}</span>
               </div>
             </div>
             <div className="col-md-6">
               <label className="form-label text-center w-100">Imię</label>
               <div className="data-box">
-                <span>Name</span>
+                <span>{userData.name}</span>
               </div>
             </div>
             <div className="col-md-6">
               <label className="form-label text-center w-100">Nazwisko</label>
               <div className="data-box">
-                <span>Surname</span>
+                <span>{userData.surname}</span>
               </div>
             </div>
             <div className="col-md-6">
               <label className="form-label text-center w-100">Telefon</label>
               <div className="data-box">
-                <span>Phone number</span>
+                <span>{userData.phone}</span>
               </div>
             </div>
             <div className="col-md-6">
               <label className="form-label text-center w-100">Email</label>
               <div className="data-box">
-                <span>Email</span>
+                <span>{userData.email}</span>
               </div>
             </div>
             <div className="col-md-12">
               <label className="form-label text-center w-100">Adres</label>
               <div className="data-box">
-                <span>Address</span>
+                <span>{userData.address}</span>
               </div>
             </div>
           </div>

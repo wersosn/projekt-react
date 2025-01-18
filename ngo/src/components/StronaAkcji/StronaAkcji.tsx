@@ -32,6 +32,20 @@ const StronaAkcji: React.FC = () => {
         fetchEventDetails();
     }, [id]);
 
+    const deleteEvent = async (eventId: number) => {
+        if (window.confirm('Czy na pewno chcesz usunąć to wydarzenie?')) {
+          try {
+            const eventService = new EventService();
+            await eventService.deleteEvent(eventId).toPromise();
+            alert('Wydarzenie zostało usunięte.');
+            navigate('/');
+          } catch (err) {
+            console.error('Błąd podczas usuwania wydarzenia:', err);
+            alert('Wystąpił błąd podczas usuwania wydarzenia.');
+          }
+        }
+      };
+
     return (
         <div className="container mt-4">
             <div className="row">
@@ -92,6 +106,13 @@ const StronaAkcji: React.FC = () => {
                             <p className="text-muted">
                                 {eventDetails?.description}
                             </p>
+                            <button className="btn btn-primary w-100" onClick={() => navigate(`/akcje/edytuj/${eventDetails?.id}`)}>
+                                        Edytuj wydarzenie
+                            </button>
+                            <button className="btn btn-primary w-100 btn-danger" onClick={() => deleteEvent(eventDetails?.id!)}>
+                                        Usuń wydarzenie
+                            </button>
+
                             {isLoggedIn && userRole === "administrator" && (
                                 <>
                                     <button className="btn btn-primary w-100" onClick={() => navigate(`/akcje/edytuj/${eventDetails?.id}`)}>

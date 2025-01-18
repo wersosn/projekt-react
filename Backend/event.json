@@ -14,7 +14,7 @@
     "description": "Test 2 :)",
     "date": "2024-12-08",
     "time": "23:00",
-    "location": "Warszawa",
+    "location": "Białystok",
     "seats": 60,
     "color": "green"
   },
@@ -44,14 +44,5 @@
     "time": "16:36",
     "location": "Warszawa",
     "seats": 1
-  },
-  {
-    "id": 1737031577039,
-    "title": "test",
-    "description": "reacta",
-    "date": "2025-01-16",
-    "time": "13:46",
-    "location": "Białystok",
-    "seats": "4"
   }
 ]
