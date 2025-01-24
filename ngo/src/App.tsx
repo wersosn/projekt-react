@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import BlogAkcji from './components/BlogAkcji/BlogAkcji';
 import Kalendarz from './components/Kalendarz/Kalendarz';
@@ -18,9 +18,17 @@ import './App.scss';
 const App = () => {
   const [userId, setUserId] = useState<string | null>(null);
 
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+
   const logout = () => {
     setUserId(null);
-
+    localStorage.removeItem('userId');
+    localStorage.removeItem('user');
   };
 
   return (
