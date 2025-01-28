@@ -17,9 +17,8 @@ const StronaAkcji: React.FC = () => {
         description: ''
     });
 
-    // Fetch event details and check if user is logged in
     useEffect(() => {
-        const loggedIn = localStorage.getItem('userId') !== null;  // Check if userId exists in localStorage
+        const loggedIn = localStorage.getItem('userId') !== null;
         setIsLoggedIn(loggedIn);
 
         if (loggedIn) {
@@ -40,7 +39,6 @@ const StronaAkcji: React.FC = () => {
         fetchEventDetails();
     }, [id]);
 
-    // Join event
     const joinEvent = () => {
         if (isLoggedIn) {
             const userId = localStorage.getItem('userId');

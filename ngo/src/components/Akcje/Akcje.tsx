@@ -1,6 +1,8 @@
 import React from 'react';
 import './Akcje.scss';
 import { NavLink } from 'react-router-dom';
+import Akcja from '../Akcje/Akcja/Akcja';
+
 const Akcje: React.FC = () => {
   return (
     <div>
@@ -18,6 +20,7 @@ const Akcje: React.FC = () => {
         </div>
       </div>
       <h1 style={{ textAlign: 'center' }}>Dostępne Akcje</h1>
+      <Akcja />
     </div>
   );
 };

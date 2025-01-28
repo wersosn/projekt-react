@@ -31,7 +31,6 @@ const EdytujAkcje: React.FC = () => {
   const [error, setError] = useState<string>('');
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  // Funkcja do pobierania szczegółów wydarzenia
   useEffect(() => {
     if (id) {
       axios
@@ -47,7 +46,6 @@ const EdytujAkcje: React.FC = () => {
     }
   }, [id]);
 
-  // Funkcja do obsługi zmiany w formularzu
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setEvent((prevEvent) => ({
@@ -56,7 +54,6 @@ const EdytujAkcje: React.FC = () => {
     }));
   };
 
-  // Funkcja do walidacji formularza
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
 
@@ -83,7 +80,6 @@ const EdytujAkcje: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Funkcja do zapisania zmodyfikowanego wydarzenia
   const saveEvent = (e: React.FormEvent) => {
     e.preventDefault();
 
