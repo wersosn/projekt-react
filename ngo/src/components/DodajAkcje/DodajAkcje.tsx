@@ -1,12 +1,15 @@
+// DodajAkcje.tsx
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addEvent } from '../../redux/eventSlice';
+import { EventService } from '../../event.service';
 import { useNavigate } from 'react-router-dom';
-import { EventService } from '../../event.service'; 
 import './DodajAkcje.scss';
 
-
 const DodajAkcje: React.FC = () => {
-  const eventService = new EventService();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const eventService = new EventService();
 
   const [newEvent, setNewEvent] = useState({
     id: Date.now(),
@@ -60,6 +63,7 @@ const DodajAkcje: React.FC = () => {
     if (validateForm()) {
       eventService.addEvent(newEvent).subscribe({
         next: () => {
+          dispatch(addEvent(newEvent)); // Zaktualizowanie stanu w Reduxie
           alert('Akcja została stworzona!');
           setNewEvent({
             id: Date.now(),
@@ -132,4 +136,5 @@ const DodajAkcje: React.FC = () => {
     </div>
   );
 };
+
 export default DodajAkcje;

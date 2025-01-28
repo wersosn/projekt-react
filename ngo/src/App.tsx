@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 import BlogAkcji from './components/BlogAkcji/BlogAkcji';
 import Kalendarz from './components/Kalendarz/Kalendarz';
 import Rejestracja from './components/Rejestracja/Rejestracja';
@@ -33,23 +36,24 @@ const App = () => {
 
   return (
     <>
-      <Router>
-        <Navbar userId={userId} logout={logout} />
-        <Routes>
-          <Route path="/" element={<BlogAkcji />} />
-          <Route path="/kalendarz" element={<Kalendarz />} />
-          <Route path="/rejestracja" element={<Rejestracja />} />
-          <Route path="/logowanie" element={<Logowanie />} />
-          <Route path="/konto" element={<Konto />} />
-          <Route path="/akcje" element={<Akcje />} />
-          <Route path="/akcja" element={<Akcja />} />
-          <Route path="/akcja-administrator" element={<AkcjaAdministrator />} />
-          <Route path="/akcja/szczegóły/:id" element={<StronaAkcji />} />
-          <Route path="/akcje/dodaj" element={<DodajAkcje />} />
-          <Route path="/akcje/edytuj/:id" element={<EdytujAkcje />} />
-
-        </Routes>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Navbar userId={userId} logout={logout} />
+          <Routes>
+            <Route path="/" element={<BlogAkcji />} />
+            <Route path="/kalendarz" element={<Kalendarz />} />
+            <Route path="/rejestracja" element={<Rejestracja />} />
+            <Route path="/logowanie" element={<Logowanie />} />
+            <Route path="/konto" element={<Konto />} />
+            <Route path="/akcje" element={<Akcje />} />
+            <Route path="/akcja" element={<Akcja />} />
+            <Route path="/akcja-administrator" element={<AkcjaAdministrator />} />
+            <Route path="/akcja/szczegóły/:id" element={<StronaAkcji />} />
+            <Route path="/akcje/dodaj" element={<DodajAkcje />} />
+            <Route path="/akcje/edytuj/:id" element={<EdytujAkcje />} />
+          </Routes>
+        </Router>
+      </Provider>
     </>
   );
 }
