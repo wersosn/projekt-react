@@ -17,13 +17,21 @@ const StronaAkcji: React.FC = () => {
         description: ''
     });
 
+    // Fetch event details and check if user is logged in
     useEffect(() => {
+        const loggedIn = localStorage.getItem('userId') !== null;  // Check if userId exists in localStorage
+        setIsLoggedIn(loggedIn);
+
+        if (loggedIn) {
+            const role = localStorage.getItem('userRole');
+            setUserRole(role || '');
+        }
+
         const fetchEventDetails = async () => {
             try {
                 const eventService = new EventService();
                 const event = await eventService.getEventById(Number(id)).toPromise();
                 setEventDetails(event);
-
             } catch (err) {
                 console.log('Failed to fetch event details');
             }
@@ -32,19 +40,42 @@ const StronaAkcji: React.FC = () => {
         fetchEventDetails();
     }, [id]);
 
+    // Join event
+    const joinEvent = () => {
+        if (isLoggedIn) {
+            const userId = localStorage.getItem('userId');
+            const eventId = eventDetails?.id;
+
+            if (userId && eventId) {
+                const eventService = new EventService();
+                eventService.joinEvent(Number(userId), eventId).subscribe({
+                    next: () => {
+                        navigate(`/akcja/szczegóły/${eventId}`);
+                    },
+                    error: (err) => {
+                        console.error('Błąd zapisu na wydarzenie:', err);
+                        alert('Wystąpił problem przy zapisywaniu.');
+                    }
+                });
+            }
+        } else {
+            alert('Musisz być zalogowany, aby zapisać się na wydarzenie!');
+        }
+    };
+
     const deleteEvent = async (eventId: number) => {
         if (window.confirm('Czy na pewno chcesz usunąć to wydarzenie?')) {
-          try {
-            const eventService = new EventService();
-            await eventService.deleteEvent(eventId).toPromise();
-            alert('Wydarzenie zostało usunięte.');
-            navigate('/');
-          } catch (err) {
-            console.error('Błąd podczas usuwania wydarzenia:', err);
-            alert('Wystąpił błąd podczas usuwania wydarzenia.');
-          }
+            try {
+                const eventService = new EventService();
+                await eventService.deleteEvent(eventId).toPromise();
+                alert('Wydarzenie zostało usunięte.');
+                navigate('/');
+            } catch (err) {
+                console.error('Błąd podczas usuwania wydarzenia:', err);
+                alert('Wystąpił błąd podczas usuwania wydarzenia.');
+            }
         }
-      };
+    };
 
     return (
         <div className="container mt-4">
@@ -71,15 +102,15 @@ const StronaAkcji: React.FC = () => {
                                     <p className="card-subtitle mb-2 text-muted">{eventDetails.date},<br />{eventDetails.location}</p>
                                 </>
                             )}
-                            {/*  {(!eventDetails?.seats || !isLoggedIn) ? (
-                               <button className="btn btn-primary btn-sm udz" onClick={joinEvent} disabled>
+                            {(!eventDetails?.seats || !isLoggedIn) ? (
+                                <button className="btn btn-primary btn-sm udz" onClick={joinEvent} disabled>
                                     Weź Udział!
                                 </button>
                             ) : (
                                 <button className="btn btn-primary btn-sm udz" onClick={joinEvent}>
                                     Weź Udział!
                                 </button>
-                            )}*/}
+                            )}
                         </div>
                         <hr />
                         <h3>Dostępne godziny</h3>
@@ -107,10 +138,10 @@ const StronaAkcji: React.FC = () => {
                                 {eventDetails?.description}
                             </p>
                             <button className="btn btn-primary w-100" onClick={() => navigate(`/akcje/edytuj/${eventDetails?.id}`)}>
-                                        Edytuj wydarzenie
+                                Edytuj wydarzenie
                             </button>
                             <button className="btn btn-primary w-100 btn-danger" onClick={() => deleteEvent(eventDetails?.id!)}>
-                                        Usuń wydarzenie
+                                Usuń wydarzenie
                             </button>
 
                             {isLoggedIn && userRole === "administrator" && (

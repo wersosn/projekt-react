@@ -52,7 +52,7 @@
     "date": "2025-01-19",
     "time": "16:03",
     "location": "Białystok",
-    "seats": 1
+    "seats": 0
   },
   {
     "id": 1738074509601,
@@ -61,6 +61,6 @@
     "date": "2025-01-28",
     "time": "15:28",
     "location": "Warszawa",
-    "seats": 1
+    "seats": 0
   }
 ]
