@@ -42,8 +42,8 @@ const Akcja: React.FC = () => {
   };
 
   return (
-    <div className="container mt-3">
-        <div>
+    <div className="container akcjaP mt-3">
+       
           {userEvents.map((event) => (
             <div key={event.id} className="action-box col-12">
               <div className="action-details col-2">
@@ -65,7 +65,7 @@ const Akcja: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
+       
     </div>
   );
 };
