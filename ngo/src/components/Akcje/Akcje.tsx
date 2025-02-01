@@ -2,8 +2,11 @@ import React from 'react';
 import './Akcje.scss';
 import { NavLink } from 'react-router-dom';
 import Akcja from '../Akcje/Akcja/Akcja';
+import AkcjaAdministrator from '../Akcje/Akcja-administrator/Akcja-administrator';
 
 const Akcje: React.FC = () => {
+  const userRole = localStorage.getItem('userRole');
+
   return (
     <div>
       <div className="container mt-2" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -20,7 +23,7 @@ const Akcje: React.FC = () => {
         </div>
       </div>
       <h1 style={{ textAlign: 'center' }}>Dostępne Akcje</h1>
-      <Akcja />
+      {userRole === 'administrator' ? <AkcjaAdministrator /> : <Akcja />}
     </div>
   );
 };

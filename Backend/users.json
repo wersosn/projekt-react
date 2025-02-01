@@ -28,6 +28,8 @@
     "phone": "987654321",
     "address": "ul. Inna 2, 00-002 Kraków",
     "gender": "F",
-    "events": []
+    "events": [
+      1732362385388
+    ]
   }
 ]

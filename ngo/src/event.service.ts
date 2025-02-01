@@ -1,4 +1,3 @@
-
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import axios from 'axios';
@@ -73,11 +72,11 @@ export class EventService {
   }
   /**
    * Pobiera wszystkie wydarzenia
-   * @returns Observable<any[]> - Observable zawierający listę wszystkich wydarzeń
+   * @returns Observable<Event[]> - Observable zawierający listę wszystkich wydarzeń
    */
-  getAllEvents(): Observable<any[]> {
+  getAllEvents(): Observable<Event[]> {
     return new Observable(observer => {
-      axios.get<any[]>(`http://localhost:3000/api/events/`).then(response => {
+      axios.get<Event[]>(this.eventsUrl).then(response => {
         observer.next(response.data);
         observer.complete();
       });
@@ -170,4 +169,4 @@ export class EventService {
       });
     });
   }
-}
+}export default new EventService();
