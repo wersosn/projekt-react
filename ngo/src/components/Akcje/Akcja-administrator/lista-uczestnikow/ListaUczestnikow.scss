@@ -1,0 +1,27 @@
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.user-header,
+.user-item {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 1fr; 
+    gap: 15px;
+    align-items: center;
+    text-align: center;
+}
+
+.form-label {
+    font-weight: bold;
+    text-align: center;
+}
+
+.data-box {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}

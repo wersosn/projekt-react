@@ -43,7 +43,7 @@ class UserService {
    * Pobiera szczegóły użytkownika, w tym jego ID, rolę, login oraz email
    */
   async getUserDetails(userId: string): Promise<{ id: number; role: string; login: string; email: string }> {
-    const response = await axios.get<{ id: number; role: string; login: string; email: string }>(`${this.userUrl}/users/${userId}`);
+    const response = await axios.get<{ id: number; role: string; login: string; email: string }>(`${this.userUrl}/${userId}`);
     return response.data;
   }
 }
