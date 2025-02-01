@@ -8,6 +8,7 @@ import ListaUczestnikow from './lista-uczestnikow/ListaUczestnikow';
 import './lista-uczestnikow/ListaUczestnikow.scss';
 import { User } from '../../../user.service';
 import { EventService, Event } from '../../../event.service';
+import UsunUczestnika from './usun-uczestnika/UsunUczestnika';
 
 const AkcjaAdministrator: React.FC = () => {
     const [listVisible, setListVisible] = useState(false);
@@ -97,7 +98,7 @@ const AkcjaAdministrator: React.FC = () => {
                     )}
                     {removeVisible && selectedEventId === event.id && (
                         <div className="col-12">
-                            {/* Komponent do usuwania uczestnika */}
+                            <UsunUczestnika eventId={selectedEventId} />
                         </div>
                     )}
                 </div>
