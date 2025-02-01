@@ -6,7 +6,7 @@
     "date": "2024-11-23",
     "time": "16:24",
     "location": "Białystok",
-    "seats": 10
+    "seats": 11
   },
   {
     "id": 1732362385388,
@@ -15,7 +15,7 @@
     "date": "2024-12-08",
     "time": "23:00",
     "location": "Białystok",
-    "seats": 60,
+    "seats": 59,
     "color": "green"
   },
   {
@@ -25,7 +25,7 @@
     "date": "2025-01-30",
     "time": "14:00",
     "location": "Warszawa",
-    "seats": 1
+    "seats": 2
   },
   {
     "id": 1734006985096,
@@ -35,26 +35,5 @@
     "time": "16:36",
     "location": "Warszawa",
     "seats": 1
-<<<<<<< HEAD
-  },
-  {
-    "id": 1737212431149,
-    "title": "x",
-    "description": "x",
-    "date": "2025-01-19",
-    "time": "16:03",
-    "location": "Białystok",
-    "seats": 1
-  },
-  {
-    "id": 1738074509601,
-    "title": "xxx22",
-    "description": "xxxx",
-    "date": "2025-01-28",
-    "time": "15:28",
-    "location": "Warszawa",
-    "seats": 1
-=======
->>>>>>> ee3fafaaa4611ea365c7d34b45b090284e25097f
   }
 ]
