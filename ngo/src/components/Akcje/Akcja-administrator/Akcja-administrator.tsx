@@ -87,17 +87,17 @@ const AkcjaAdministrator: React.FC = () => {
                     </div>
 
                     {listVisible && selectedEventId === event.id && (
-                        <div className="col-12">
+                        <div className="col-12 expanding-section">
                             <ListaUczestnikow eventId={selectedEventId} />
                         </div>
                     )}
                     {addVisible && selectedEventId === event.id && (
-                        <div className="col-12">
+                        <div className="col-12 expanding-section">
                            <DodajUczestnika eventId={selectedEventId} />
                         </div>
                     )}
                     {removeVisible && selectedEventId === event.id && (
-                        <div className="col-12">
+                        <div className="col-12 expanding-section">
                             <UsunUczestnika eventId={selectedEventId} />
                         </div>
                     )}
