@@ -8,12 +8,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+   width: 100%;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .action-buttons {
  
     text-align: center;
+}
+.akcjaP{
+    width: 100% !important;
 }
 .action-buttons .btn,.action-details .btn {
     display: block;

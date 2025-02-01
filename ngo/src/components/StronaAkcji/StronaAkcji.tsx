@@ -96,7 +96,7 @@ const StronaAkcji: React.FC = () => {
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             {eventDetails && (
                                 <>
-                                    <h3>{eventDetails.title}</h3>
+                                    <h3 style={{ marginRight: '20px' }}>{eventDetails.title}</h3>
                                     <p className="card-subtitle mb-2 text-muted">{eventDetails.date},<br />{eventDetails.location}</p>
                                 </>
                             )}
@@ -135,22 +135,14 @@ const StronaAkcji: React.FC = () => {
                             <p className="text-muted">
                                 {eventDetails?.description}
                             </p>
-                            <button className="btn btn-primary w-100" onClick={() => navigate(`/akcje/edytuj/${eventDetails?.id}`)}>
-                                Edytuj wydarzenie
-                            </button>
-                            <button className="btn btn-primary w-100 btn-danger" onClick={() => deleteEvent(eventDetails?.id!)}>
-                                Usuń wydarzenie
-                            </button>
-
                             {isLoggedIn && userRole === "administrator" && (
                                 <>
                                     <button className="btn btn-primary w-100" onClick={() => navigate(`/akcje/edytuj/${eventDetails?.id}`)}>
                                         Edytuj wydarzenie
                                     </button>
-                                    <br />
-                                    {/* <button className="btn btn-primary w-100 btn-danger" onClick={() => deleteEvent(eventDetails?.id)}>
+                                    <button className="btn btn-primary w-100 btn-danger" onClick={() => deleteEvent(eventDetails?.id!)}>
                                         Usuń wydarzenie
-                                    </button>*/}
+                                    </button>
                                 </>
                             )}
                         </div>

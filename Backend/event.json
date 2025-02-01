@@ -22,28 +22,20 @@
     "id": 1732734330374,
     "title": "Akcja 3",
     "description": "Test rejestracji na wydarzenie",
-    "date": "2024-11-30",
+    "date": "2025-01-30",
     "time": "14:00",
     "location": "Warszawa",
     "seats": 1
   },
   {
-    "id": 1733136870504,
-    "title": "gs",
-    "description": "dd",
-    "date": "2024-12-21",
-    "time": "11:00",
-    "location": "bb",
-    "seats": 2
-  },
-  {
     "id": 1734006985096,
-    "title": "Akcja",
+    "title": "Akcja 4",
     "description": "Opis",
-    "date": "2024-12-27",
+    "date": "2025-01-27",
     "time": "16:36",
     "location": "Warszawa",
     "seats": 1
+<<<<<<< HEAD
   },
   {
     "id": 1737212431149,
@@ -62,5 +54,7 @@
     "time": "15:28",
     "location": "Warszawa",
     "seats": 1
+=======
+>>>>>>> ee3fafaaa4611ea365c7d34b45b090284e25097f
   }
 ]
