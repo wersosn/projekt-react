@@ -75,6 +75,10 @@ const StronaAkcji: React.FC = () => {
         }
     };
 
+    const navigateToEdit = () => {
+        navigate(`/akcje/edytuj/${eventDetails?.id}`);
+    };
+
     return (
         <div className="container mt-4">
             <div className="row">
@@ -137,7 +141,7 @@ const StronaAkcji: React.FC = () => {
                             </p>
                             {isLoggedIn && userRole === "administrator" && (
                                 <>
-                                    <button className="btn btn-primary w-100" onClick={() => navigate(`/akcje/edytuj/${eventDetails?.id}`)}>
+                                    <button className="btn btn-primary w-100" onClick={navigateToEdit}>
                                         Edytuj wydarzenie
                                     </button>
                                     <button className="btn btn-primary w-100 btn-danger" onClick={() => deleteEvent(eventDetails?.id!)}>

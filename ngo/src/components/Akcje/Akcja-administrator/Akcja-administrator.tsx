@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Akcja-administrator.scss';
+import { useNavigate } from 'react-router-dom';
 //import DodajUczestnika from './DodajUczestnika';
 //import SzukajUczestnika from './SzukajUczestnika';
 //import UsunUczestnika from './UsunUczestnika';
 import ListaUczestnikow from './lista-uczestnikow/ListaUczestnikow';
+import './lista-uczestnikow/ListaUczestnikow.scss';
+
 import { EventService, Event } from '../../../event.service';
 
 const AkcjaAdministrator: React.FC = () => {
@@ -11,7 +14,9 @@ const AkcjaAdministrator: React.FC = () => {
     const [removeVisible, setRemoveVisible] = useState(false);
     const [addVisible, setAddVisible] = useState(false);
     const [events, setEvents] = useState<Event[]>([]);
+    const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
     const eventService = new EventService();
+    const navigate = useNavigate();
 
     useEffect(() => {
         eventService.getAllEvents().subscribe((data) => {
@@ -19,10 +24,15 @@ const AkcjaAdministrator: React.FC = () => {
         });
     }, []);
 
-    const toggleList = () => {
+    const toggleList = (eventId: number) => {
+        if (selectedEventId === eventId) {
+            setListVisible(!listVisible);
+        } else {
+            setListVisible(true);
+        }
         setRemoveVisible(false);
         setAddVisible(false);
-        setListVisible(!listVisible);
+        setSelectedEventId(eventId);
     };
 
     const toggleRemove = () => {
@@ -37,6 +47,14 @@ const AkcjaAdministrator: React.FC = () => {
         setAddVisible(!addVisible);
     };
 
+    const goToDetails = (id: number) => {
+        navigate(`/akcja/szczegóły/${id}`);
+    };
+
+    const goToEdit = (id: number) => {
+        navigate(`/akcje/edytuj/${id}`);
+    };
+
     return (
         <div className="container mt-3">
             {events.map((event) => (
@@ -45,14 +63,14 @@ const AkcjaAdministrator: React.FC = () => {
                         <h3>{event.title}</h3>
                         <p><strong>Data:</strong> {event.date}</p>
                         <p><strong>Lokalizacja:</strong> {event.location}</p>
-                        <button className="btn">Szczegóły Akcji</button>
-                        <button className="btn">Edytuj Akcje</button>
+                        <button className="btn" onClick={() => goToDetails(event.id)}>Szczegóły Akcji</button>
+                        <button className="btn" onClick={() => goToEdit(event.id)}>Edytuj Akcje</button>
                     </div>
                     <div className="col-3">
                         <p><strong>Opis:</strong> {event.description}</p>
                     </div>
                     <div className="action-buttons col-2">
-                        <button className="btn" onClick={toggleList}>Pokaż listy uczestników</button>
+                        <button className="btn" onClick={() => toggleList(event.id)}>Pokaż listy uczestników</button>
                         <button className="btn" onClick={toggleAdd}>Dodaj uczestnika do listy</button>
                         <button className="btn" onClick={toggleRemove}>Usuń uczestnika z listy</button>
                     </div>
@@ -74,35 +92,15 @@ const AkcjaAdministrator: React.FC = () => {
                             )}
                         </div>
                     </div>
+
+                    {/* NWM jak to naprawić */}
+                    {listVisible && selectedEventId === event.id && (
+                        <div className="col-12">
+                            <ListaUczestnikow eventId={selectedEventId} />
+                        </div>
+                    )}
                 </div>
             ))}
-            {listVisible && (
-                <div className="action-box col-12 mt-3">
-                    <ListaUczestnikow eventId={events[1]?.id} />
-                </div>
-            )}
-            {removeVisible && (
-                <div className="action-box col-12 mt-3 d-flex flex-column align-items-center">
-                    <div className="users-list w-100 mt-3">
-                        <div className="user-header">
-                            <label className="form-label">ID</label>
-                            <label className="form-label">Imię</label>
-                            <label className="form-label">Nazwisko</label>
-                        </div>
-                    </div>
-                </div>
-            )}
-            {addVisible && (
-                <div className="action-box col-12 mt-3 d-flex flex-column align-items-center">
-                    <div className="users-list w-100 mt-3">
-                        <div className="user-header">
-                            <label className="form-label">ID</label>
-                            <label className="form-label">Imię</label>
-                            <label className="form-label">Nazwisko</label>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

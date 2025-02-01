@@ -1,27 +1,30 @@
 .user-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-top: 20px !important; 
 }
 
 .user-header,
 .user-item {
-    display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr; 
-    gap: 15px;
-    align-items: center;
-    text-align: center;
+    display: grid !important;
+    grid-template-columns: 0.5fr 1fr 1fr !important; 
+    gap: 15px !important;
+    align-items: center !important;
+    text-align: center !important;
 }
 
+
+
 .form-label {
-    font-weight: bold;
-    text-align: center;
+    font-weight: bold !important;
+    text-align: center !important;
 }
 
 .data-box {
-    background-color: #f0f0f0;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-align: center;
+    background-color: #f0f0f0 !important;
+    padding: 5px 10px !important;
+    border-radius: 5px !important;
+    text-align: center !important;
 }

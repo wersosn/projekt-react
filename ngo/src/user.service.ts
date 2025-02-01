@@ -46,6 +46,14 @@ class UserService {
     const response = await axios.get<{ id: number; role: string; login: string; email: string }>(`${this.userUrl}/${userId}`);
     return response.data;
   }
+
+  /**
+   * Pobiera użytkowników na podstawie ID wydarzenia
+   */
+  async getUsersByEvent(eventId: number): Promise<User[]> {
+    const response = await axios.get<User[]>(`${this.userUrl}`);
+    return response.data.filter(user => user.events.includes(eventId));
+  }
 }
 
 export default new UserService();
