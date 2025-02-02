@@ -1,0 +1,16 @@
+## Instrukcja użytkownika
+### Spis treści
+- [1 Niezalogowany](1%20Niezalogowany/README.md)
+    - [1.1 Logowanie](1%20Niezalogowany/1.1%20Logowanie/README.md)
+    - [1.2 Rejestracja](1%20Niezalogowany/1.2%20Rejestracja/README.md)
+    - [1.3 Wyświetlanie kalendarza](1%20Niezalogowany/1.3%20Wyświetlanie%20kalendarza/README.md)
+    - [1.4 Wyświetlanie szczegółów akcji](1%20Niezalogowany/1.4%20Wyświetlanie%20szczegółów%20akcji/README.md)
+- [2 Zalogowany](2%20Zalogowany/README.md)
+    - [2.1 Użytkownik](2%20Zalogowany/2.1%20Użytkownik/README.md)
+    - [2.2 Administrator](2%20Zalogowany/2.2%20Administrator/README.md)
+        - [2.2.1 Wyświetlanie szczegółów akcji](2%20Zalogowany/2.2%20Administrator/2.2.1%20Wyświetlanie%20szczegółów%20akcji/README.md)
+        - [2.2.2 Dodawanie nowej akcji](2%20Zalogowany/2.2%20Administrator/2.2.2%20Dodawanie%20nowej%20akcji/README.md)
+        - [2.2.3 Edycja akcji](2%20Zalogowany/2.2%20Administrator/2.2.3%20Edycja%20akcji/README.md)
+        - [2.2.4 Wyświetlanie uczestników akcji](2%20Zalogowany/2.2%20Administrator/2.2.4%20Wyświetlanie%20uczestników%20akcji/README.md)
+        - [2.2.5 Dodawanie uczestnika do akcji](2%20Zalogowany/2.2%20Administrator/2.2.5%20Dodawanie%20uczestnika%20do%20akcji/README.md)
+        - [2.1.6 Usuwanie uczestnika z akcji](2%20Zalogowany/2.2%20Administrator/2.2.6%20Usuwanie%20uczestnika%20z%20akcji/README.md)
