@@ -57,6 +57,13 @@ npm run dev
 ```
 Aplikacja zostanie uruchomiona lokalnie i dostępna pod adresem `http://localhost:5173/`
 
+Uruchomienie Node.js:
+```
+cd projekt-react/Backend
+node app.js
+```
+Backend zostanie uruchomiony lokalnie i będzie dostępny pod adresem `http://localhost:3000/`
+
 ## Instrukcja użytkownika
 Spis treści dostępny jest w pliku [README](https://github.com/wersosn/projekt-react/blob/master/instrukcja) w katalogu `instrukcja`
 
@@ -117,3 +124,9 @@ npm run dev
 ```
 The application will be available locally at `http://localhost:5173/`
 
+Run Node.js:
+```
+cd projekt-react/Backend
+node app.js
+```
+The backend will be available locally at `http://localhost:3000/`
